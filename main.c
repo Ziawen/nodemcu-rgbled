@@ -212,9 +212,7 @@ void randomlights(){
         analogWrite(LED_GREEN, 0);
         analogWrite(LED_BLUE, 255);
         delay(profil3delay);
-        analogWrite(LED_GREEN, 0);
-        analogWrite(LED_BLUE, 0);
-        analogWrite(LED_RED, 0);
+        ledkapat();
         delay(profil3delay);
   }
 //randomlights - end
