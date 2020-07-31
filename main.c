@@ -145,15 +145,15 @@ for(int i=25; i<255; i++){
         delay(2);
         }
   Blynk.syncVirtual(V10,V11,V12,V5,V4);
-}
-
-void hearteffect2(){
-for(int i=255; i>25; i--){
+  
+  for(int i=255; i>25; i--){
         analogWrite(LED_RED, i);
         delay(2);
         }
       Blynk.syncVirtual(V10,V11,V12,V5,V4);
 }
+
+
 
 
 //heart effect - start
@@ -163,20 +163,18 @@ void hearteffect(){
       analogWrite(LED_BLUE, 0);
         
       hearteffect1();
-      hearteffect2();
+
         
       
       hearteffect1();
-      hearteffect2();
+
   
         delay(500);
   
       hearteffect1();
-      hearteffect2();
         
       
       hearteffect1();
-      hearteffect2();
         delay(500);
 }
 
