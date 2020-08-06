@@ -8,3 +8,7 @@
 - Protoboard
 - 3x 330Ω Resistor
 - DC-DC Step Down Buck Converter Module LM2596
+
+## Contributors
+
+- Deoksriboz
