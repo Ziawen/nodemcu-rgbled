@@ -104,77 +104,64 @@ void ledkapat() {
   analogWrite(LED_BLUE, 0);
 }
 
+void RGB(int R, int G, int B){
+  analogWrite(LED_RED, R);
+  analogWrite(LED_GREEN, G);
+  analogWrite(LED_BLUE, B);
+  }
+  
+
+
 
 //Rgbwave effect - start
-
 void rgbwave() {
   for (int i = 0; i < 255; i++) {
-    analogWrite(LED_RED, 255);
-    analogWrite(LED_GREEN, 0);
-    analogWrite(LED_BLUE, i);
+    RGB(255,0,i);
     delay(animdelay);
   }
-
-
-
   for (int i = 255; i > 0; i--) {
-    analogWrite(LED_RED, i);
+    RGB(i,0,255);
     delay(animdelay);
   }
-
-
   for (int i = 0; i < 255; i++) {
-    analogWrite(LED_RED, 0);
-    analogWrite(LED_GREEN, i);
-    analogWrite(LED_BLUE, 255);
+    RGB(0,i,255);
     delay(animdelay);
   }
-
   for (int i = 255; i > 0; i--) {
-    analogWrite(LED_BLUE, i);
+    RGB(0,255,i);
     delay(animdelay);
   }
-
   for (int i = 0; i < 255; i++) {
-    analogWrite(LED_RED, i);
-    analogWrite(LED_GREEN, 255);
-    analogWrite(LED_BLUE, 0);
+    RGB(i,255,0);
     delay(animdelay);
-
   }
-
   for (int i = 255; i > 0; i--) {
-    analogWrite(LED_GREEN, i);
+    RGB(255,i,0);
     delay(animdelay);
-
   }
-
 }
 
-//Rgbwave effect - end
-
-
-void hearteffect1() {
-  for (int i = 25; i < 255; i++) {
-    analogWrite(LED_RED, i);
-    delay(2);
-  }
-
-
-  for (int i = 255; i > 25; i--) {
-    analogWrite(LED_RED, i);
-    delay(2);
-  }
-
-}
 
 
 
 
 //heart effect - start
+void hearteffect1() {
+  for (int i = 25; i < 255; i++) {
+    RGB(i,0,0);
+    delay(2);
+  }
+
+
+  for (int i = 255; i > 25; i--) {
+    RGB(i,0,0);
+    delay(2);
+  }
+
+}
+
 void hearteffect() {
-  analogWrite(LED_GREEN, 0);
-  analogWrite(LED_BLUE, 0);
+  RGB(0,0,0);
   hearteffect1();
   hearteffect1();
   delay(500);
@@ -182,6 +169,7 @@ void hearteffect() {
   hearteffect1();
   delay(500);
 }
+
 
 
 
@@ -196,26 +184,15 @@ void randomlights() {
   }
 
 
-  analogWrite(LED_GREEN, 0);
-  analogWrite(LED_BLUE, 0);
-  analogWrite(LED_RED, 255);
-
+  RGB(255,0,0);
   delay(profil3delay);
   ledkapat();
   delay(profil3delay);
-
-  analogWrite(LED_RED, 0);
-  analogWrite(LED_BLUE, 0);
-  analogWrite(LED_GREEN, 255);
-
+  RGB(0,255,0);
   delay(profil3delay);
   ledkapat();
   delay(profil3delay);
-
-  analogWrite(LED_RED, 0);
-  analogWrite(LED_GREEN, 0);
-  analogWrite(LED_BLUE, 255);
-
+  RGB(0,0,255);
   delay(profil3delay);
   ledkapat();
   delay(profil3delay);
@@ -227,9 +204,7 @@ void blinkcolor() {
 
   int profile4delay;
   profile4delay = animdelay * 50;
-  analogWrite(LED_RED, BLYNK_RED);
-  analogWrite(LED_GREEN, BLYNK_GREEN);
-  analogWrite(LED_BLUE, BLYNK_BLUE);
+  RGB(BLYNK_RED,BLYNK_GREEN,BLYNK_BLUE);
   delay(profile4delay);
   ledkapat();
   delay(profile4delay);
