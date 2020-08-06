@@ -12,9 +12,9 @@ int animdelay = 1;
 
 
 //Auth Blynk
-char auth[] = "bxY96_vZYUoiW5kUyehyV8Ou8XOk5VOx";
-char ssid[] = "SEBILCI";
-char pass[] = "a8fe7bc4";
+char auth[] = "";
+char ssid[] = "";
+char pass[] = "";
 
 
 BlynkTimer timer;
