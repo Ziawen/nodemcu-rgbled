@@ -17,6 +17,7 @@ char ssid[] = "";
 char pass[] = "";
 
 
+
 BlynkTimer timer;
 void setup()
 {
@@ -97,12 +98,6 @@ BLYNK_WRITE(V4)
 
 ////////////////Effect Voids
 
-
-void ledkapat() {
-  analogWrite(LED_RED, 0);
-  analogWrite(LED_GREEN, 0);
-  analogWrite(LED_BLUE, 0);
-}
 
 void RGB(int R, int G, int B){
   analogWrite(LED_RED, R);
@@ -186,15 +181,15 @@ void randomlights() {
 
   RGB(255,0,0);
   delay(profil3delay);
-  ledkapat();
+  RGB(0,0,0); // Turn Off Led
   delay(profil3delay);
   RGB(0,255,0);
   delay(profil3delay);
-  ledkapat();
+  RGB(0,0,0); // Turn Off Led
   delay(profil3delay);
   RGB(0,0,255);
   delay(profil3delay);
-  ledkapat();
+  RGB(0,0,0); // Turn Off Led
   delay(profil3delay);
 }
 
@@ -206,7 +201,7 @@ void blinkcolor() {
   profile4delay = animdelay * 50;
   RGB(BLYNK_RED,BLYNK_GREEN,BLYNK_BLUE);
   delay(profile4delay);
-  ledkapat();
+  RGB(0,0,0); // Turn Off Led
   delay(profile4delay);
 }
 
@@ -217,14 +212,14 @@ void loop() {
   Blynk.run();
   timer.run();
   if (POWER == 0) {
-    ledkapat();
+    RGB(0,0,0); // Turn Off Led
   } else {
 
     if (LED_MODE == 1) {
 
       if (LED_PROFILE == 1) {
 
-        ledkapat();
+        RGB(0,0,0); // Turn Off Led
         rgbwave();
 
       } else if (LED_PROFILE == 2) {
