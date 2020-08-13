@@ -6,7 +6,7 @@
 #define LED_BLUE 13
 
 //Blynk variable inputs
-int POWER, LED_PROFILE, LED_MODE, BLYNK_RED, BLYNK_GREEN, BLYNK_BLUE;
+int POWER,BRIGHTNESS=1,LED_PROFILE, LED_MODE, BLYNK_RED, BLYNK_GREEN, BLYNK_BLUE;
 int animdelay = 1;
 
 
@@ -22,7 +22,7 @@ BlynkTimer timer;
 void setup()
 {
   // Debug console & Leds mode inputs & DataSync - start
-  Serial.begin(9600);
+  // Serial.begin(9600);
   Blynk.begin(auth, ssid, pass);
   pinMode(LED_RED, OUTPUT);
   pinMode(LED_GREEN, OUTPUT);
@@ -35,7 +35,7 @@ void setup()
 //Sync Data
 void sensorDataSend()
 {
-  Blynk.syncVirtual(V10, V11, V12, V3, V7, V5, V4);
+  Blynk.syncVirtual(V10, V11, V12, V3, V7, V6, V5, V4);
 }
 
 
@@ -69,6 +69,12 @@ BLYNK_WRITE(V3)
   Serial.print("Power = ");
   Serial.println(POWER);
 }
+BLYNK_WRITE(V6)
+{
+  BRIGHTNESS = param.asInt();
+  Serial.print("Brightness = ");
+  Serial.println(BRIGHTNESS);
+}
 BLYNK_WRITE(V7)
 {
   animdelay = param.asInt();
@@ -92,6 +98,8 @@ BLYNK_WRITE(V4)
   Serial.println(" ");
 
 }
+
+
 ////////////////Sync Blynk Signals - End
 
 
@@ -100,9 +108,12 @@ BLYNK_WRITE(V4)
 
 
 void RGB(int R, int G, int B){
-  analogWrite(LED_RED, R);
-  analogWrite(LED_GREEN, G);
-  analogWrite(LED_BLUE, B);
+  int Rr = R/BRIGHTNESS;
+  int Gr = G/BRIGHTNESS;
+  int Br = B/BRIGHTNESS;
+  analogWrite(LED_RED, Rr);
+  analogWrite(LED_GREEN, Gr);
+  analogWrite(LED_BLUE, Br);
   }
   
 
@@ -193,16 +204,54 @@ void randomlights() {
   delay(profil3delay);
 }
 
+//randomlightsv2 - start
+void randomlightsv2() {
+  int profil4delay;
+  if (animdelay < 4) {
+    profil4delay = 4 * 10;
+  } else {
+    profil4delay = animdelay * 10;
+  }
+
+
+
+  RGB(255,0,0);
+  delay(profil4delay);
+  RGB(0,0,0); // Turn Off Led
+  delay(profil4delay);
+  RGB(127,255,0);
+  delay(profil4delay);
+  RGB(0,0,0); // Turn Off Led
+  delay(profil4delay);
+  RGB(0,255,0);
+  delay(profil4delay);
+  RGB(0,0,0); // Turn Off Led
+  delay(profil4delay);
+  RGB(0,127,255);
+  delay(profil4delay);
+  RGB(0,0,0); // Turn Off Led
+  delay(profil4delay);
+  RGB(0,0,255);
+  delay(profil4delay);
+  RGB(0,0,0); // Turn Off Led
+  delay(profil4delay);
+  RGB(255,0,127);
+  delay(profil4delay);
+  RGB(0,0,0); // Turn Off Led
+  delay(profil4delay);
+
+}
+
 
 //blink color effect - start
 void blinkcolor() {
 
-  int profile4delay;
-  profile4delay = animdelay * 50;
+  int profile5delay;
+  profile5delay = animdelay * 50;
   RGB(BLYNK_RED,BLYNK_GREEN,BLYNK_BLUE);
-  delay(profile4delay);
+  delay(profile5delay);
   RGB(0,0,0); // Turn Off Led
-  delay(profile4delay);
+  delay(profile5delay);
 }
 
 
@@ -232,15 +281,17 @@ void loop() {
 
       } else if (LED_PROFILE == 4) {
 
+        randomlightsv2();
+        
+      } else if (LED_PROFILE == 5) {
+        
         blinkcolor();
-
+        
       }
 
 
     } else {
-      analogWrite(LED_RED, BLYNK_RED);
-      analogWrite(LED_GREEN, BLYNK_GREEN);
-      analogWrite(LED_BLUE, BLYNK_BLUE);
+      RGB(BLYNK_RED,BLYNK_GREEN,BLYNK_BLUE);
     }
 
   }
