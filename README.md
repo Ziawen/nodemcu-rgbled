@@ -2,7 +2,7 @@
 
 ## Libary
 - <a href="http://arduino.esp8266.com/stable/package_esp8266com_index.json" target="_blank">ESP8266 Package</a>
-- <a href="https://blynk.io/" target="_blank">Blynk Api</a>
+- <a href="https://blynk.io/" target="_blank">Blynk API</a>
 
 ## Parts Required
 - NodeMCU v3
